@@ -748,6 +748,7 @@ html, body {
   font-size: 0.9rem;
   color: var(--text-primary);
   box-shadow: var(--shadow);
+  /* fadeOut delay (2.6s) aligns with the 3000ms default duration minus the 0.4s fadeOut itself */
   animation: slideInRight 0.3s ease, fadeOut 0.4s ease 2.6s forwards;
   max-width: 320px;
 }

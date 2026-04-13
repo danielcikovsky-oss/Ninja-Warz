@@ -413,7 +413,7 @@ function startBattle() {
 
 function setupFighter(side, ninja) {
   $(`${side}-avatar`).textContent    = ninja.emoji;
-  $(`${side}-name`).textContent      = ninja.name + (side === 'enemy' ? ` (Lv.${ninja.level})` : ` (Lv.${ninja.level})`);
+  $(`${side}-name`).textContent      = `${ninja.name} (Lv.${ninja.level})`;
   $(`${side}-hp-fill`).style.width   = '100%';
   $(`${side}-hp-text`).textContent   = `${ninja.hp}/${ninja.maxHp} HP`;
   $(`fighter-${side}`).classList.remove('attacking', 'hit', 'dead');
