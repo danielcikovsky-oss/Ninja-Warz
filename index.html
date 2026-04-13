@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ninja Warz 🥷</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==========================================
+       TOP BAR
+       ========================================== -->
+  <header id="top-bar">
+    <div class="top-bar-logo">
+      <span class="logo-icon">🥷</span>
+      <h1>Ninja Warz</h1>
+    </div>
+    <div class="top-bar-stats">
+      <div class="stat-badge gold">
+        <span class="icon">💰</span>
+        <span id="top-gold">0</span> Gold
+      </div>
+      <div class="stat-badge clan">
+        <span class="icon">🥷</span>
+        <span id="top-clan-size">0</span> Ninjas ·
+        <span id="top-clan-level">Avg Lv.0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       NAVIGATION
+       ========================================== -->
+  <nav id="nav">
+    <button class="nav-btn" id="nav-section-clan"   onclick="showSection('section-clan')">
+      <span class="nav-icon">🥷</span> My Clan
+    </button>
+    <button class="nav-btn" id="nav-section-battle" onclick="showSection('section-battle')">
+      <span class="nav-icon">⚔️</span> Battle
+    </button>
+    <button class="nav-btn" id="nav-section-shop"   onclick="showSection('section-shop')">
+      <span class="nav-icon">🛒</span> Shop
+    </button>
+  </nav>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main id="main-content">
+
+    <!-- ====== CLAN SECTION ====== -->
+    <section id="section-clan" class="section">
+      <div class="clan-header">
+        <div class="section-title">🥷 My Clan</div>
+        <button class="btn btn-primary" onclick="recruitNinja()">
+          ➕ Recruit Ninja (80💰)
+        </button>
+      </div>
+      <div id="ninja-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ====== BATTLE SECTION ====== -->
+    <section id="section-battle" class="section">
+      <div class="section-title">⚔️ Battle</div>
+
+      <div class="battle-layout">
+
+        <!-- Left: Choose Ninja -->
+        <div class="battle-panel">
+          <h3>🥷 Your Fighter</h3>
+          <div id="ninja-selector" class="ninja-selector">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Right: Choose Difficulty -->
+        <div class="battle-panel">
+          <h3>⚙️ Difficulty</h3>
+          <div class="difficulty-group">
+
+            <div class="diff-btn easy selected" id="diff-easy" onclick="selectDifficulty('easy')">
+              <span class="diff-icon">🟢</span>
+              <div class="diff-info">
+                <div class="diff-name">Easy</div>
+                <div class="diff-desc">Weak enemies, low rewards</div>
+              </div>
+              <div class="diff-reward">+20–50 💰</div>
+            </div>
+
+            <div class="diff-btn medium" id="diff-medium" onclick="selectDifficulty('medium')">
+              <span class="diff-icon">🟡</span>
+              <div class="diff-info">
+                <div class="diff-name">Medium</div>
+                <div class="diff-desc">Balanced challenge</div>
+              </div>
+              <div class="diff-reward">+50–120 💰</div>
+            </div>
+
+            <div class="diff-btn hard" id="diff-hard" onclick="selectDifficulty('hard')">
+              <span class="diff-icon">🔴</span>
+              <div class="diff-info">
+                <div class="diff-name">Hard</div>
+                <div class="diff-desc">Tough enemies, big rewards</div>
+              </div>
+              <div class="diff-reward">+120–280 💰</div>
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" id="fight-btn" onclick="startBattle()" style="width:100%;padding:14px;">
+            ⚔️ Start Battle!
+          </button>
+        </div>
+
+        <!-- Full-width Battle Arena -->
+        <div id="battle-arena" class="battle-panel" style="grid-column: 1 / -1;">
+          <h3>🏟️ Battle Arena</h3>
+
+          <div class="arena-fighters">
+
+            <!-- Player Fighter -->
+            <div class="fighter" id="fighter-player">
+              <span class="fighter-avatar" id="player-avatar">🥷</span>
+              <div class="fighter-name" id="player-name">Your Ninja</div>
+              <div class="fighter-hp-bar">
+                <div class="fighter-hp-fill" id="player-hp-fill" style="width:100%"></div>
+              </div>
+              <div class="fighter-hp-text" id="player-hp-text">100/100 HP</div>
+            </div>
+
+            <div class="vs-divider">VS</div>
+
+            <!-- Enemy Fighter -->
+            <div class="fighter" id="fighter-enemy">
+              <span class="fighter-avatar" id="enemy-avatar">👹</span>
+              <div class="fighter-name" id="enemy-name">Enemy Ninja</div>
+              <div class="fighter-hp-bar">
+                <div class="fighter-hp-fill" id="enemy-hp-fill" style="width:100%"></div>
+              </div>
+              <div class="fighter-hp-text" id="enemy-hp-text">100/100 HP</div>
+            </div>
+
+          </div>
+
+          <!-- Battle Log -->
+          <div id="battle-log" role="log" aria-live="polite">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Result Banner -->
+          <div id="battle-result" class="battle-result" role="alert"></div>
+
+        </div><!-- /battle-arena -->
+
+      </div><!-- /battle-layout -->
+    </section>
+
+    <!-- ====== SHOP SECTION ====== -->
+    <section id="section-shop" class="section">
+      <div class="section-title">🛒 Weapon Shop</div>
+      <p style="color:var(--text-muted);margin-bottom:20px;font-size:0.9rem;">
+        Buy weapons to boost your ninjas' attack power. After purchasing, assign a weapon to a ninja using the dropdown.
+      </p>
+      <div id="shop-grid" class="shop-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+  </main><!-- /main-content -->
+
+  <!-- ==========================================
+       RECRUIT MODAL
+       ========================================== -->
+  <div class="modal-overlay" id="recruit-modal">
+    <div class="modal">
+      <h2>🥷 Recruit a Ninja</h2>
+      <p>
+        Spend <strong style="color:var(--accent-gold2)">80 💰 Gold</strong> to recruit a new ninja to your clan.
+        A random warrior will join your ranks!
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeRecruitModal()">Cancel</button>
+        <button class="btn btn-gold"    onclick="confirmRecruit()">Recruit!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       TOAST NOTIFICATIONS
+       ========================================== -->
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
